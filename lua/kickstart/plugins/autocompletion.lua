@@ -19,6 +19,10 @@ return {
         end)(),
         config = function()
           local ls = require 'luasnip'
+          -- Load your custom snippets
+          require('luasnip.loaders.from_lua').lazy_load {
+            paths = { vim.fn.stdpath 'config' .. '/LuaSnip' },
+          }
 
           ls.config.set_config {
             -- Enable auto-triggered snippets
