@@ -26,7 +26,7 @@ return {
 
           ls.config.set_config {
             -- Enable auto-triggered snippets
-            enable_autosnippets = true,
+            enable_autosnippets = false,
 
             -- Use Tab to store visual selection for snippets
             store_selection_keys = '<Tab>',
