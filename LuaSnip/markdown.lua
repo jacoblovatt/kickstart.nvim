@@ -1,6 +1,5 @@
-local ls = require "luasnip"
+local ls = require("luasnip")
 local s = ls.snippet
-local t = ls.text_node
 local i = ls.insert_node
 local f = ls.function_node
 local fmta = require("luasnip.extras.fmt").fmta
@@ -37,7 +36,7 @@ return {
     fmta("###### <>", { i(1) })),
 
   ---------------------------------------------------------------------------
-  -- Lists & Tasks (start-of-line)
+  -- Lists & Tasks
   ---------------------------------------------------------------------------
   s({ trig = "li", dscr = "Bullet item", condition = line_begin },
     fmta("- <>", { i(1) })),
@@ -52,15 +51,15 @@ return {
     fmta("- [x] <>", { i(1) })),
 
   ---------------------------------------------------------------------------
-  -- Quotes & Callouts (start-of-line)
+  -- Quotes & Callouts (escaped for fmta)
   ---------------------------------------------------------------------------
   s({ trig = "quote", dscr = "Blockquote", condition = line_begin },
-    fmta("> <>", { i(1) })),
+    fmta(">> <>", { i(1) })),
 
   s({ trig = "call", dscr = "Callout / admonition", condition = line_begin },
     fmta([[
-> [!<>] <>
-> <>
+>> [!<>] <>
+>> <>
 ]], {
       i(1, "NOTE"),
       i(2, "Title"),
@@ -68,7 +67,7 @@ return {
     })),
 
   ---------------------------------------------------------------------------
-  -- Links & Media (inline)
+  -- Links & Media
   ---------------------------------------------------------------------------
   s({ trig = "link", dscr = "Markdown link" },
     fmta("[<>](<>)", { i(1, "text"), i(2, "url") })),
@@ -83,7 +82,7 @@ return {
     fmta("[[<>|<>]]", { i(1, "Note Title"), i(2, "Alias") })),
 
   ---------------------------------------------------------------------------
-  -- Code blocks (start-of-line)
+  -- Code Blocks
   ---------------------------------------------------------------------------
   s({ trig = "cb", dscr = "Fenced code block", condition = line_begin },
     fmta([[
@@ -117,7 +116,7 @@ return {
 ]], { i(1) })),
 
   ---------------------------------------------------------------------------
-  -- Tables (start-of-line)
+  -- Tables
   ---------------------------------------------------------------------------
   s({ trig = "tbl2", dscr = "2-column table", condition = line_begin },
     fmta([[
@@ -146,7 +145,7 @@ return {
     })),
 
   ---------------------------------------------------------------------------
-  -- Frontmatter (start-of-line)
+  -- Frontmatter
   ---------------------------------------------------------------------------
   s({ trig = "fm", dscr = "YAML frontmatter", condition = line_begin },
     fmta([[
@@ -165,7 +164,7 @@ draft: true
     })),
 
   ---------------------------------------------------------------------------
-  -- Writing helpers (start-of-line)
+  -- Writing Helpers
   ---------------------------------------------------------------------------
   s({ trig = "abs", dscr = "Abstract section", condition = line_begin },
     fmta([[
