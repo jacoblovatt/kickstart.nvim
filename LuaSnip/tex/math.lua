@@ -92,30 +92,6 @@ return {
     )
   ),
 
-  s(
-    { trig = 'item', dscr = 'itemize', condition = line_begin },
-    fmta(
-      [[
-\begin{itemize}
-  \item <>
-\end{itemize}
-]],
-      { i(1) }
-    )
-  ),
-
-  s(
-    { trig = 'enum', dscr = 'enumerate', condition = line_begin },
-    fmta(
-      [[
-\begin{enumerate}
-  \item <>
-\end{enumerate}
-]],
-      { i(1) }
-    )
-  ),
-
   ---------------------------------------------------------------------------
   -- Matrices / brackets (math mode)
   ---------------------------------------------------------------------------
