@@ -140,8 +140,25 @@ return {
   -- Inline math: $ ... $
   --s({ trig = 'mm', dscr = 'Inline math $...$' }, fmta('$<>$', { i(1) }), { condition = in_text }),
 
-  -- Inline math: \( ... \)
-  s({ trig = 'mm', dscr = 'Inline math \\( ... \\)' }, fmta('\\( <> \\)', { i(1) }), { condition = in_text }),
+  -- Inline math: \( ... \) notice the i(0) so I can tab past the \) which makes this really clean
+  s({ trig = 'mm', dscr = 'Inline math \\( ... \\)' }, fmta('\\( <> \\) <>', { i(1), i(0) }), { condition = in_text }),
+  -- Display math
+  s(
+    { trig = 'dm', dscr = 'Display math \\[ ... \\]' },
+    fmta(
+      [[
+  \[
+    <>
+  \]
+  <>
+  ]],
+      {
+        i(1),
+        i(0),
+      }
+    ),
+    { condition = in_text }
+  ),
 
   ---------------------------------------------------------------------------
   -- Core math constructs (math mode)
@@ -172,6 +189,44 @@ return {
   s({ trig = 'bb', dscr = '\\mathbb{X}', condition = in_mathzone }, fmta('\\mathbb{<>}', { i(1, 'R') })),
   s({ trig = 'cal', dscr = '\\mathcal{X}', condition = in_mathzone }, fmta('\\mathcal{<>}', { i(1, 'L') })),
   s({ trig = 'bf', dscr = '\\mathbf{v}', condition = in_mathzone }, fmta('\\mathbf{<>}', { i(1, 'v') })),
+  -- Vector
+  s(
+    { trig = 'vb', dscr = 'Vector bold (\\mathbf{v}_1)' },
+    fmta('\\mathbf{<>}<>', {
+      i(1, 'v'),
+      c(2, {
+        t '',
+        fmta('_{<>}', { i(1, '1') }),
+      }),
+    }),
+    { condition = in_mathzone }
+  ),
+
+  -- x_1 subscripts etc.
+  s(
+    { trig = '([%a])(%d+)', regTrig = true, dscr = 'x1 -> x_1, y12 -> y_{12}' },
+    f(function(_, snip)
+      local letter = snip.captures[1]
+      local digits = snip.captures[2]
+      if #digits == 1 then
+        return letter .. '_' .. digits
+      else
+        return letter .. '_{' .. digits .. '}'
+      end
+    end, {}),
+    { condition = in_mathzone }
+  ),
+
+  -- f(x)
+  s(
+    { trig = 'fx', dscr = 'Function call f(x)' },
+    fmta('<>(<>)<>', {
+      i(1, 'f'),
+      i(2, 'x'),
+      i(0),
+    }),
+    { condition = in_mathzone }
+  ),
 
   ---------------------------------------------------------------------------
   -- Derivatives / operators (math mode)

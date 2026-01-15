@@ -53,6 +53,7 @@ return {
   s({ trig = 's1', dscr = 'Section', condition = line_begin }, fmta('\\section{<>}\n<>', { i(1, 'Title'), i(2) })),
   s({ trig = 's2', dscr = 'Subsection', condition = line_begin }, fmta('\\subsection{<>}\n<>', { i(1, 'Title'), i(2) })),
   s({ trig = 's3', dscr = 'Subsubsection', condition = line_begin }, fmta('\\subsubsection{<>}\n<>', { i(1, 'Title'), i(2) })),
+  s({ trig = 'par', dscr = 'Paragraph', condition = line_begin }, fmta('\\paragraph{<>}\n<>', { i(1, 'Title'), i(2) })),
 
   -- Lists (⟂)
   s(
