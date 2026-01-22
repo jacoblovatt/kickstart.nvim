@@ -228,6 +228,18 @@ return {
     { condition = in_mathzone }
   ),
 
+  -- Kernel
+  s({ trig = 'oker', dscr = 'Kernel operator' }, fmta('\\operatorname{Ker} <>', { i(1) }), { condition = in_mathzone }),
+
+  -- Image
+  s({ trig = 'oim', dscr = 'Image operator' }, fmta('\\operatorname{Im} <>', { i(1) }), { condition = in_mathzone }),
+
+  -- Rank
+  s({ trig = 'orank', dscr = 'Rank operator' }, fmta('\\operatorname{rank} <>', { i(1) }), { condition = in_mathzone }),
+
+  -- Span
+  s({ trig = 'ospan', dscr = 'Span operator' }, fmta('\\operatorname{span} <>', { i(1) }), { condition = in_mathzone }),
+
   ---------------------------------------------------------------------------
   -- Derivatives / operators (math mode)
   ---------------------------------------------------------------------------
