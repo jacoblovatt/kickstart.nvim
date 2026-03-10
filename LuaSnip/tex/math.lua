@@ -163,12 +163,12 @@ return {
   ---------------------------------------------------------------------------
   -- Core math constructs (math mode)
   ---------------------------------------------------------------------------
-
+  s({ trig = 'inf', dscr = 'infinity' }, fmta('\\infty <>', { i(1) }), { condition = in_mathzone }),
   s({ trig = 'ff', dscr = '\\frac{a}{b}', condition = in_mathzone }, fmta('\\frac{<>}{<>}', { i(1), i(2) })),
   s({ trig = 'sq', dscr = '\\sqrt{x}', condition = in_mathzone }, fmta('\\sqrt{<>}', { i(1) })),
   s({ trig = 'sr', dscr = '\\sqrt[n]{x}', condition = in_mathzone }, fmta('\\sqrt[<>]{<>}', { i(1, 'n'), i(2) })),
 
-  s({ trig = 'sum', dscr = 'summation', condition = in_mathzone }, fmta('\\sum_{<>}^{<>} <>', { i(1, 'i=1'), i(2, 'n'), i(3) })),
+  s({ trig = 'sum', dscr = 'summation', condition = in_mathzone }, fmta('\\sum_{<>}^{<>} <>', { i(1, 'n=1'), i(2, '\\infty'), i(3) })),
   s({ trig = 'prod', dscr = 'product', condition = in_mathzone }, fmta('\\prod_{<>}^{<>} <>', { i(1, 'i=1'), i(2, 'n'), i(3) })),
 
   s({ trig = 'int', dscr = 'integral', condition = in_mathzone }, fmta('\\int_{<>}^{<>} <> \\, d<>', { i(1), i(2), i(3), i(4, 'x') })),
